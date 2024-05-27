@@ -1,0 +1,1 @@
+**Static files:** [task.tar.gz](https://storage.yandexcloud.net/sas-1/CHIPI_CHIPI_CHAPA_CHAPA_DUBI_DUBI_DABA_DABA.tar.gz)

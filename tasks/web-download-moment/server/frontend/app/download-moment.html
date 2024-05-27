@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download Moment</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="static/img/logo_full.png" alt="Service Logo" id="logo">
+        <span class="logo-text">Download Moment</span>
+    </div>
+</header>
+
+<div id="upload" style="display: none">
+    <div id="drag-drop-area">Drag and drop files here</div>
+    <form action="/upload" method="POST">
+        <input type="file" id="file" name="file">
+    </form>
+</div>
+
+<div id="text-center" style="display: none">
+    <a href="#" target="_blank">test</a><img id="copy-icon" src="static/img/copy.png">
+</div>
+
+<div id="preview" style="display: none">
+    <div class="archive-preview">
+        <div class="file-list">
+        </div>
+    </div>
+    <div class="download-widget">
+        <div class="info-container">
+            <div class="timer-info">
+                <div class="time-icon"></div>
+                <span class="time-remaining">00:00</span>
+            </div>
+            <div class="file-info">
+                <div class="file-icon"></div>
+                <span class="file-size">0B</span>
+            </div>
+        </div>
+        <div class="download-button">
+            <div class="download-icon"></div>
+            <span>download</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p class="footer-text">Download Moment is a quick file sharing service.<br>Upload, download and preview securely stored files free of charge and without registration.</p>
+</footer>
+<div style="visibility: hidden; opacity: 0" id="dropzone"></div>
+<script src="static/js/script.js"></script>
+</body>
+</html>

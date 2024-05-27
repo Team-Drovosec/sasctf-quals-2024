@@ -1,0 +1,4 @@
+aiohttp
+pydantic
+jinja2
+redis

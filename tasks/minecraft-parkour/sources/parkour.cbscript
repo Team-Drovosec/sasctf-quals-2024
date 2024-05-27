@@ -1,0 +1,97 @@
+dir "/Users/irdkwmnsb-mac/Library/Application Support/PrismLauncher/instances/1.20.4/.minecraft/saves/parkour"
+desc "Hello world!"
+
+import random
+import common
+
+reset
+    /time set day
+    /gamerule doDaylightCycle false
+    unless @Position do create @Position
+    score = 0
+    as @a
+        /tp @Position 0 98 0
+        at @Position
+            /tp @s ~ ~1 ~
+        end
+        tell @s "Every 50 jumps one symbol of the flag will appear in chat"
+        tell @s "SAS\{p4rkour_m4ster_"
+        make_next_task()
+    end
+end
+
+function make_next_task()
+    random = randint(0, 8)
+    score++
+    if score % 50 == 0
+        flag_c = @Position.x / 10000 % 16
+        if flag_c < 10
+            tell @s "(flag_c)"
+        end
+        if flag_c == 10
+            tell @s "A"
+        end
+        if flag_c == 11
+            tell @s "B"
+        end
+        if flag_c == 12
+            tell @s "C"
+        end
+        if flag_c == 13
+            tell @s "D"
+        end
+        if flag_c == 14
+            tell @s "E"
+        end
+        if flag_c == 15
+            tell @s "F"
+        end
+    end
+    if score == 1000
+        tell @s "\}"
+        /kill @Position
+    end
+    as @Position at @Position
+        /fill ~-10 ~-1 ~-10 ~10 ~-1 ~10 minecraft:air replace
+        /setblock ~ ~-1 ~ minecraft:glass
+        switch random
+            case 0
+                /tp @s ~1 ~0 ~2
+            end
+            case 1
+                /tp @s ~2 ~0 ~1
+            end
+            case 2
+                /tp @s ~2 ~0 ~-1
+            end
+            case 3
+                /tp @s ~1 ~0 ~-2
+            end
+            case 4
+                /tp @s ~-1 ~0 ~-2
+            end
+            case 5
+                /tp @s ~-2 ~0 ~-1
+            end
+            case 6
+                /tp @s ~-2 ~0 ~1
+            end
+            case 7
+                /tp @s ~-1 ~0 ~2
+            end
+        end
+        as @Position at @Position
+            /setblock ~ ~-1 ~ minecraft:black_stained_glass
+        end
+    end
+end
+
+define @NearPosition1: @Position[distance=..1]
+
+end
+
+clock tick 
+    as @a at @s if @NearPosition1
+        make_next_task()
+    end
+end

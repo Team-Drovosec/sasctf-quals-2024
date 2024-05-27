@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  task-nuclear-panel:
+    build: .
+    ports:
+        - "127.0.0.1:3000:80"

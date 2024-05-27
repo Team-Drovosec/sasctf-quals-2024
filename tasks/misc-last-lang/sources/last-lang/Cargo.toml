@@ -1,0 +1,40 @@
+[package]
+name = "last-lang"
+version = "0.1.0"
+authors = ["EvilWind"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.197", features = ["derive"] }
+
+dioxus = { version = "0.5.1", features = ["fullstack"] }
+
+# Debug
+tracing = "0.1.40"
+dioxus-logger = "0.5.0"
+manganis = "0.2.2"
+web-sys = { version = "0.3.69", features = [
+    "MouseEvent",
+    "DataTransfer",
+    "DragEvent",
+    "DomRect",
+    "Element"
+] }
+derive_more = "0.99.17"
+tokio = {optional=true}
+tower = {optional=true}
+axum = {optional=true}
+http = {optional=true}
+async-trait = "0.1.80"
+tower-sessions = {optional=true}
+sha3 = "0.10.8"
+server_fn = {version="0.6.11", features = ["cbor"]}
+
+
+[features]
+default = []
+server = ["axum", "tokio", "tower", "dioxus/axum", "http", "tower-sessions"]
+web = ["dioxus/web"]
+

@@ -1,0 +1,6 @@
+aiortc
+fastapi
+pillow
+numpy
+pydantic
+redis

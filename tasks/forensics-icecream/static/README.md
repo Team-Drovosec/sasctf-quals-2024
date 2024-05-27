@@ -1,0 +1,1 @@
+**Static files:** [mobile-forensics.rar](https://storage.yandexcloud.net/sas-1/mobile_forensics_2024-05.rar) (password: dT25vfeYS8scW47gJHLaPp)

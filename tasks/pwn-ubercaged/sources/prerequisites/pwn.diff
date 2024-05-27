@@ -1,0 +1,122 @@
+diff --git a/src/base/build_config.h b/src/base/build_config.h
+index 673330236ce..ab0aab1e14a 100644
+--- a/src/base/build_config.h
++++ b/src/base/build_config.h
+@@ -35,8 +35,10 @@
+ #define V8_HAS_PTHREAD_JIT_WRITE_PROTECT 0
+ #endif
+ 
++// Make sure the PKU (on linux <=> pkey_mprotect) is disabled as
++// it adds a lot of complications for this challenge.
+ #if defined(V8_OS_LINUX) && defined(V8_HOST_ARCH_X64)
+-#define V8_HAS_PKU_JIT_WRITE_PROTECT 1
++#define V8_HAS_PKU_JIT_WRITE_PROTECT 0
+ #else
+ #define V8_HAS_PKU_JIT_WRITE_PROTECT 0
+ #endif
+diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
+index 32c2d1cc8c0..a8f3f96eaac 100644
+--- a/src/builtins/builtins-array.cc
++++ b/src/builtins/builtins-array.cc
+@@ -263,6 +263,56 @@ V8_WARN_UNUSED_RESULT Maybe<bool> TryFastArrayFill(
+ }
+ }  // namespace
+ 
++// Array().readAt(<idx>)
++BUILTIN(ArrayReadAt) {
++  HandleScope scope(isolate);
++
++  // Extract JSArray
++  Handle<JSReceiver> receiver;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, receiver, Object::ToObject(isolate, args.receiver()));
++  Handle<JSArray> array = Handle<JSArray>::cast(receiver);
++
++  // Get scalar array
++  Tagged<FixedDoubleArray> elements = FixedDoubleArray::cast(array->elements());
++
++  // Extract index to read from
++  Handle<Object> indexToReadFromObject;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
++          isolate, indexToReadFromObject, Object::ToNumber(isolate, args.at<Object>(1)));
++  double indexToReadFrom = Object::Number(*indexToReadFromObject);
++
++  // return 
++  return *isolate->factory()->NewNumber(elements->get_scalar(static_cast<uint32_t>(indexToReadFrom))); // get_representation
++}
++
++// Array().writeAt(<idx>, <value>)
++BUILTIN(ArrayWriteAt) {
++  HandleScope scope(isolate);
++
++  // Extract JSArray
++  Handle<JSReceiver> receiver;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, receiver, Object::ToObject(isolate, args.receiver()));
++  Handle<JSArray> array = Handle<JSArray>::cast(receiver);
++
++  // Get scalar array
++  Tagged<FixedDoubleArray> elements = FixedDoubleArray::cast(array->elements());
++
++  // Extract index to write to
++  Handle<Object> indexToWriteToObject;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
++          isolate, indexToWriteToObject, Object::ToNumber(isolate, args.at<Object>(1)));
++  double indexToWriteTo = Object::Number(*indexToWriteToObject);
++
++  // Extract value to write to specified index
++  Handle<Object> value;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
++          isolate, value, Object::ToNumber(isolate, args.at<Object>(2)));
++  elements->set(indexToWriteTo, Object::Number(*value));
++
++  // return true
++  return *isolate->factory()->ToBoolean(true);
++}
++
+ BUILTIN(ArrayPrototypeFill) {
+   HandleScope scope(isolate);
+ 
+diff --git a/src/builtins/builtins-definitions.h b/src/builtins/builtins-definitions.h
+index ae9d557def0..a8f63488a9e 100644
+--- a/src/builtins/builtins-definitions.h
++++ b/src/builtins/builtins-definitions.h
+@@ -410,6 +410,10 @@ namespace internal {
+   /* ES6 #sec-array.prototype.push */                                          \
+   CPP(ArrayPush)                                                               \
+   TFJ(ArrayPrototypePush, kDontAdaptArgumentsSentinel)                         \
++  /* ArrayReadAt method */                                                     \
++  CPP(ArrayReadAt)                                                             \
++  /* ArrayWriteAt method */                                                    \
++  CPP(ArrayWriteAt)                                                            \
+   /* ES6 #sec-array.prototype.shift */                                         \
+   CPP(ArrayShift)                                                              \
+   /* ES6 #sec-array.prototype.unshift */                                       \
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 7ffe0beb654..c2b75af4b4f 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -1921,6 +1921,10 @@ Type Typer::Visitor::JSCallTyper(Type fun, Typer* t) {
+       return Type::Receiver();
+     case Builtin::kArrayPush:
+       return t->cache_->kPositiveSafeInteger;
++    case Builtin::kArrayReadAt:
++      return Type::Number();
++    case Builtin::kArrayWriteAt:
++      return Type::Boolean();
+     case Builtin::kArrayPrototypeReverse:
+     case Builtin::kArrayPrototypeSlice:
+       return Type::Receiver();
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index 4f3c55dae4b..73783d2905c 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -2518,6 +2518,10 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+                           0, false);
+     SimpleInstallFunction(isolate_, proto, "push", Builtin::kArrayPrototypePush,
+                           1, false);
++    SimpleInstallFunction(isolate_, proto, "readAt", Builtin::kArrayReadAt,
++                          2, false);
++    SimpleInstallFunction(isolate_, proto, "writeAt", Builtin::kArrayWriteAt,
++                          3, false);
+     SimpleInstallFunction(isolate_, proto, "reverse",
+                           Builtin::kArrayPrototypeReverse, 0, false);
+     SimpleInstallFunction(isolate_, proto, "shift",

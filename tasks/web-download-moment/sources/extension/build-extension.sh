@@ -1,0 +1,1 @@
+phpize --clean ; phpize && CFLAGS="-g -D_FORTIFY_SOURCE=0 -fno-stack-protector" ./configure --enable-filehoover --with-php-config=$(which php-config) && make

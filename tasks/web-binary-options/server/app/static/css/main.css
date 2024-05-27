@@ -1,0 +1,161 @@
+#comments {
+    width: 100%;
+    height: 2200px;
+    overflow: hidden;
+    margin-top: 2rem;
+    border: none;
+}
+
+body {
+    background-color: #ccc;
+    min-width: 99vmax;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.chart-container {
+    background-color: white;
+    padding: 1rem;
+    width: 72%;
+    border: solid #181818 1px;
+}
+
+.top-container div {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px
+}
+
+.top-container {
+    margin-left: 9px;
+    padding-top: 39px;
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.logo {
+    height: 65px;
+    margin-left: 20px;
+}
+
+.navbar {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    color: #000000;
+    font: 12px Verdana, Arial, sans-serif;
+    box-sizing: inherit;
+    margin-bottom: 10px;
+    padding: 0;
+    background-color: #cfd4d8;
+    position: absolute;
+    width: -webkit-fill-available;
+    border-bottom: solid #18181859 1px;
+}
+
+.inlined-nav {
+    color: #000000;
+    font: 12px Verdana, Arial, sans-serif;
+    box-sizing: inherit;
+    list-style-position: outside;
+    line-height: 1.25;
+    list-style-type: disc;
+    float: left;
+    display: inline-block;
+    margin: 0;
+    padding: 4px 10px 4px;
+}
+
+.inlined-nav li {
+    color: #000000;
+    font: 12px Verdana, Arial, sans-serif;
+    list-style-position: outside;
+    line-height: 1.25;
+    list-style-type: disc;
+    box-sizing: inherit;
+    font-size: inherit;
+    padding: 0;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+}
+
+.inlined-nav a {
+    font: 12px Verdana, Arial, sans-serif;
+    list-style-position: outside;
+    list-style-type: disc;
+    font-size: inherit;
+    box-sizing: inherit;
+    background-color: transparent;
+    line-height: inherit;
+    cursor: pointer;
+    color: #535f62;
+    text-decoration: none;
+}
+
+.calculator-form {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    position: inherit;
+    display: inline-block;
+    height: fit-content;
+    border: solid #181818 1px;
+}
+
+.calculator-form label {
+    float: left;
+    padding-left: 11px;
+    margin-top: 10px;
+}
+
+.calculator-form input[type="text"] {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid;
+    width: calc(100% - 22px);
+}
+
+.calculator-form input[type="text"]:focus-visible {
+    outline: none;
+}
+
+.calculator-form input[type="submit"] {
+    margin-top: 15px;
+    border-spacing: 0;
+    overflow: visible;
+    line-height: 1.3;
+    font-family: Verdana, sans-serif;
+    cursor: pointer;
+    color: #000000;
+    font-size: 12px;
+    height: 22px;
+}
+
+.earnings {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.form-container {
+    padding: 6rem 3rem;
+}
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "bot",
+    "version": "1.0.0",
+    "main": "bot.js",
+    "author": "ebin",
+    "license": "MIT",
+    "dependencies": {
+      "puppeteer": "22.8.0"
+    }
+  }

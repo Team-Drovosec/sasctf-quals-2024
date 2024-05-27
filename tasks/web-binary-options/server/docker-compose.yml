@@ -1,0 +1,11 @@
+version: '3'
+services:
+    binary-options:
+        build: ./
+        ports:
+            - 127.0.0.1:3000:80
+        deploy:
+          resources:
+            limits:
+              cpus: '0.4'
+              memory: 64M

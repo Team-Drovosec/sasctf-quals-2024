@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es2020",
+    "allowJs": true,
+    "moduleResolution":"node",
+  },
+  "files": ["src/index.ts"],
+  "include": ["src/env.d.ts"]
+}

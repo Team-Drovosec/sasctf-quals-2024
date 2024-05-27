@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>EVERESTBET</title>
+		<script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+		<script src="static/js/chartjs-chart-financial.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="static/css/chart.css">
+		<link rel="stylesheet" type="text/css" href="static/css/main.css">
+		<link rel="icon" type="image/png" href="static/img/logo.png">
+	</head>
+	<body>
+		<div class="navbar">
+			<ul class="inlined-nav">
+				<li>
+					<a href="javascript:void(0)"><b>Sign Up</b></a>
+				</li>
+				&nbsp;&nbsp;&nbsp;
+				<li>
+					<a href="javascript:void(0)"><b>Sign In</b></a>
+				</li>
+			</ul>
+		</div>
+		<div class="top-container">
+			<div class="chart-container">
+				<canvas id="chart"></canvas>
+			</div>
+			<div class="form-container">
+				<div class="calculator-form">
+					<p>
+						<marquee direction="down" width="100%" height="120px" behavior="alternate">
+							<marquee behavior="alternate"><h1 class="rainbow_text_animated">Profit Calculator</class></marquee>
+					    </marquee>
+					</p>
+					<label for="invest_amount">How much you are ready to invest?</label>
+					<input type="text" id="invest_amount" name="invest_amount" placeholder="Enter amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+					<input type="submit" value="Calculate" id="calculate">
+					<br>
+					<div class="earnings" id="earnings" style="display: none;">Profit: <span id="earningsValue">123$</span></div>
+				</div>
+			</div>
+		</div>
+		<iframe id="comments" src="post.html"></iframe>
+		<script type="text/javascript" src="./static/js/chart.js"></script>
+		<script>
+			window.addEventListener('load', () => {
+				setInterval(() => {
+					document.getElementById("comments").contentWindow.location.reload();
+				}, 100000)
+			});
+			document.getElementById("calculate").addEventListener('click', () => {
+				var amount = parseInt(window.invest_amount.value);
+				if (amount < 200){
+					return alert('There are only serious bets here!');
+				}
+
+				if (amount > 50000){
+					return alert('Hold your horses buddy!');
+				}
+
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("earningsValue").innerHTML = request.responseText + '.00 $';
+						document.getElementById("earnings").style = "";
+					}
+				};
+				request.open("GET", "/calc.php?amount=" + amount.toString(), true);
+				request.send();
+			});
+		</script>
+	</body>
+</html>

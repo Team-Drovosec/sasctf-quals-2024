@@ -1,0 +1,19 @@
+version: '3'
+services:
+  petushok:
+    build:
+      context: ./petushok
+    restart: always
+    depends_on:
+      - bad_python
+    environment:
+      - CTF_FLAG=SAS{kuP1l_muzh1k_p3Tuh4_4_0n_3mu_k4K_r3z}
+    ports:
+      - 0.0.0.0:3000:8080
+    entrypoint: ["gunicorn","-b","0.0.0.0:8080","wsgi:app", "-w", "12"]
+    
+  bad_python:
+    build:
+      context: ./bad_python
+    restart: always
+

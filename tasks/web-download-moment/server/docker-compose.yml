@@ -1,0 +1,13 @@
+version: '3'
+services:
+    sussy-backend:
+        build: backend
+        restart: always
+        deploy:
+          replicas: 10
+
+    sussy-frontend:
+        build: frontend
+        restart: always
+        ports:
+            - 0.0.0.0:3000:80

@@ -1,0 +1,90 @@
+.forum-container {
+    display: flex;
+    border: 1px solid #000;
+    background-color: #E0E0E0;
+    font-family: Arial, sans-serif;
+    color: #000;
+    max-width: 99%;
+    border-top: none;
+    margin: 0 auto;
+  }
+  
+  .forum-metadata {
+    width: 210px;
+    text-align: center;
+  }
+  
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .user-info {
+    margin-top: 6px;
+    padding-bottom: 5px;
+  }
+  
+  .nickname {
+    margin: 0 10;
+    font-weight: bold;
+    color: #005a88;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  
+  .user-status {
+    margin-top: 5px;
+  }
+  
+  .user-actions {
+    margin-top: 10px;
+    border-top: 1px solid #000;
+  }
+  
+  .user-actions a {
+    text-decoration: none;
+    color: #2e4f63;
+    display: inline-block;
+    margin: 5px 2px;
+  }
+  
+  .user-actions a:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-action, .pm-action {
+    color: #000;
+    padding: 0 5px;
+  }
+  
+  .forum-message {
+    flex-grow: 1;
+    border-left: 1px solid #000;
+    background-color: #F8F8F8;
+  }
+  
+  .message-header {
+    font-size: 12px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+  
+  .message-content {
+    font-size: 14px;
+    margin: 5px 5px 8px;
+  }
+  
+  html, body {
+    padding: 0;
+    margin: 0;
+    background: #ccc;
+  }
+
+  .first {
+    border-top: 1px solid #000;
+  }

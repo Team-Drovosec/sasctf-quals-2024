@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  server:
+    build: ./server
+    environment:
+      - MC_VERSION=1.20.4
+      - EULA=true
+    volumes:
+      - ./server/server.properties:/papermc/server.properties:ro
+      - ./server/config:/papermc/config/
+    # ports:
+    #   - 127.0.0.1:10000-10010:25565
+    tty: true
+    stdin_open: true
+    restart: always
+    deploy:
+      replicas: 5
+      endpoint_mode: vip
+  proxy:
+    image: itzg/bungeecord
+    restart: always
+    environment:
+      TYPE: VELOCITY
+      DEBUG: "false"
+      ENABLE_RCON: "true"
+      PLUGINS: https://github.com/Szczurowsky/VelocityLoadBalancer/releases/download/1.0/VelocityLoadBalancer.v1.0.jar
+    ports:
+      - 25565:25577
+    volumes:
+      - ./proxy/velocity.toml:/server/velocity.toml
+      - ./proxy/secret:/server/secret
+      - proxy:/server
+
+volumes:
+  proxy:

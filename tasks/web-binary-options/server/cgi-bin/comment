@@ -1,0 +1,60 @@
+#!/bin/bash
+
+iIFS=$IFS
+IFS='=&'
+qs=($QUERY_STRING)
+IFS=$iIFS
+
+declare -A params
+for ((i=0; i<${#qs[@]}; i+=2))
+do
+    params[${qs[i]}]=${qs[i+1]}
+done
+
+# for key in "${!params[@]}"; do
+#     echo "$key: ${params[$key]}"
+# done
+
+SEED=$(($(date +%s) / 100 - params[offset]))
+RANDOM=$SEED
+
+function line_from_file {
+    RANDOM=$1
+    L=$(wc -l < /opt/skuf/$2.txt)
+    N=$((RANDOM % L + 1))
+    LINE=$(sed -n "${N}p" /opt/skuf/$2.txt)
+    echo "$LINE" | tr -d '\r\n'
+}
+
+if [ "${params[act]}" = "nickname" ]; then
+    printf "Content-type: text/plain\n\n"
+
+    line_from_file $SEED nicknames
+
+elif [ "${params[act]}" = "text" ]; then
+    printf "Content-type: text/plain\n\n"
+
+    PROFIT=$((1000 + RANDOM % 9001))
+    printf "$(line_from_file $SEED messages)" $PROFIT
+
+elif [ "${params[act]}" = "avatar" ]; then
+    printf "Content-type: image/jpeg\n\n"
+
+    FILES=($(find /opt/skuf/avatar/ -type f))
+    FILE=${FILES[$RANDOM % ${#FILES[@]}]}
+    cat "$FILE"
+
+elif [ "${params[act]}" = "role" ]; then
+    printf "Content-type: text/plain\n\n"
+
+    line_from_file $SEED roles
+
+elif [ "${params[act]}" = "time" ]; then
+    printf "Content-type: text/plain\n\n"
+
+    POST_TIME=$((SEED * 100 - RANDOM % 100))
+    echo $(date +'%Y-%m-%d %H:%M:%S' -d "@$POST_TIME")
+else
+    printf "Content-type: text/plain\n\n"
+    echo "Access Denied"
+fi

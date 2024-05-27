@@ -1,0 +1,8 @@
+64 bytes
+1 1-8 simple byte check             // b724600535316972
+2 9-16 xor check                    // 2db3c1f4c9573644
+3 17-20 fibonacci number check      // 5fe5736d
+4 21-24 linear equation check       // 28c8c00a
+5 25-32 linear equation check       // 3e3f8bbe07b07d38
+6 33-64 system of equations         // d10dcb769a39c91eb33740e9db857ec5f1c3ccc78ee9862867a2cc0decda24d0
+b7246005353169722db3c1f4c95736445fe5736d28c8c00a3e3f8bbe07b07d38d10dcb769a39c91eb33740e9db857ec5f1c3ccc78ee9862867a2cc0decda24d0

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html style="overflow-y: auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nuclear Control Panel</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/nuclear/bulmaswatch.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<section class="hero is-warning">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                YOU HAVE ONLY <span class="time-left">60</span> SECONDS TO DEFUSE THE BOMB!
+            </h1>
+            <h2 class="subtitle">
+                DON`T WASTE YOUR CHANCE TO SAVE THE WORLD
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <form>
+            <div class="box">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label mem2">a1nt0n</label>
+                            <div class="control">
+                                <input class="input is-danger m1" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label mem2">m1lbobs</label>
+                            <div class="control">
+                                <input class="input is-danger m2" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label mem2">25okayPM</label>
+                            <div class="control">
+                                <input class="input is-warning m3" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label mem2">griga17</label>
+                            <div class="control">
+                                <input class="input is-danger m4" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label mem2">pch0lbi</label>
+                            <div class="control">
+                                <input class="input is-danger m5" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label mem2">l3pid0pt3ra</label>
+                            <div class="control">
+                                <input class="input is-warning m6" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label mem2">0lzhan</label>
+                                <div class="control">
+                                    <input class="input is-danger m7" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label mem2">p3nn1v1z3v1ch</label>
+                                <div class="control">
+                                    <input class="input is-warning m8" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label mem2">sushka58</label>
+                                <div class="control">
+                                    <input class="input is-danger m9" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label mem2">p4t4t4</label>
+                                <div class="control">
+                                    <input class="input is-danger m10" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label mem2">s3nnh4y</label>
+                                <div class="control">
+                                    <input class="input is-warning m11" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label mem2">ch3f3r0k</label>
+                                <div class="control">
+                                    <input class="input is-danger m12" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="columns">
+                    <div class="column is-offset-6">
+                        <div class="field">
+                            <label class="label mem2">m0unta1n666</label>
+                            <div class="control">
+                                <input class="input is-danger m13" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label mem2">w4v3</label>
+                            <div class="control">
+                                <input class="input is-warning m14" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label mem2">z3r0d4y5</label>
+                            <div class="control">
+                                <input class="input is-danger m15" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="columns is-centered">
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-danger is-large save-world">SAVE THE WORLD</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+    const idk = [8, 8, 4, 4, 8, 32];
+    const memes = ["is-warning", "is-danger", "is-success"];
+    const memes2 = ["a1nt0n", "m1lbobs", "25okayPM", "griga17", "pch0lbi", "l3pid0pt3ra", "0lzhan", "p3nn1v1z3v1ch", "sushka58", "p4t4t4", "s3nnh4y", "ch3f3r0k", "m0unta1n666", "w4v3", "z3r0d4y5"];
+    const FromHexString = hexString =>
+        new Uint8Array(hexString.match(/[0-9a-f]{2}/g).map(byte => parseInt(byte, 16)));
+
+    function timeouts() {
+        function KillDieWelt() {
+            document.body.innerHTML = "<div class=\"exodusimg\"></div>";
+            document.body.style.height = "100vh";
+            document.body.style.backgroundImage = "url(/1Zwr.gif)";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundSize = "100% 100%";
+            const exodusimg = document.querySelector(".exodusimg");
+            exodusimg.style.backgroundImage = "url(/l6hg96v.gif)";
+            exodusimg.style.backgroundRepeat = "no-repeat";
+            exodusimg.style.backgroundSize = "cover";
+            exodusimg.style.height = "100%";
+            exodusimg.style.width = "100%";
+            exodusimg.style.position = "fixed";
+            exodusimg.style.top = "0";
+            exodusimg.style.left = "0";
+        }
+
+        function SaveDieWelt() {
+            document.body.innerHTML = "";
+            document.body.style.height = "100vh";
+            document.body.style.backgroundImage = "url(/s4tsbf.jpg)";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundSize = "100% 100%";
+        }
+
+        let timeLeft = 60;
+        const lolkeInterval = setInterval(() => {
+            const lolke = document.querySelectorAll(".input");
+            lolke.forEach(element => {
+                for (let i = 0; i < memes.length; ++i) {
+                    if (element.classList.contains(memes[i])) {
+                        element.classList.replace(memes[i], memes[Math.floor(Math.random() * memes.length)]);
+                        return;
+                    }
+                }
+            });
+        }, 100);
+
+        const alzhaInterval = setInterval(() => {
+            const alzha = document.querySelectorAll(".mem2");
+            alzha.forEach(element => {
+                element.textContent = memes2[Math.floor(Math.random() * memes2.length)];
+            });
+        }, 500);
+
+        const maximInterval = setInterval(() => {
+            const maxim = document.querySelector(".time-left");
+            maxim.textContent = timeLeft.toString();
+            timeLeft--;
+            if (timeLeft < 0) {
+                KillMePls();
+            }
+        }, 1000);
+
+        function KillMePls() {
+            clearInterval(alzhaInterval);
+            clearInterval(maximInterval);
+            clearInterval(lolkeInterval);
+            KillDieWelt();
+        }
+
+        function SaveMePls() {
+            clearInterval(alzhaInterval);
+            clearInterval(maximInterval);
+            clearInterval(lolkeInterval);
+            SaveDieWelt();
+        }
+
+        return [KillMePls, SaveMePls];
+    }
+
+    function GetCheckDataHex(m) {
+        const arr = FromHexString(document.querySelector(".m" + m.toString()).value)
+        if (arr.length !== idk[m-1])
+            KillMePls();
+        return arr;
+    }
+
+    function GetCheckResultHex(m, arg) {
+        return Boolean(Module.ccall("check" + m.toString(),
+            "number",
+            ["array"],
+            [arg]));
+    }
+
+    function PerformHack(a) {
+        return Module.ccall("perform_hack",
+            'string',
+            ["array"],
+            [a]);
+    }
+
+    const [KillMePls, SaveMePls] = timeouts();
+
+    document.querySelector(".save-world").addEventListener("click", function (event) {
+        event.preventDefault();
+        let check1Data, check2Data, check3Data, check4Data, check5Data, check6Data;
+        try {
+            check1Data = GetCheckDataHex(1);
+            check2Data = GetCheckDataHex(2);
+            check3Data = GetCheckDataHex(3);
+            check4Data = GetCheckDataHex(4);
+            check5Data = GetCheckDataHex(5);
+            check6Data = GetCheckDataHex(6);
+        } catch (e) {
+            KillMePls();
+            return;
+        }
+
+        const check1Result = GetCheckResultHex(1, check1Data);
+        const check2Result = GetCheckResultHex(2, check2Data);
+        const check3Result = GetCheckResultHex(3, check3Data);
+        const check4Result = GetCheckResultHex(4, check4Data);
+        const check5Result = GetCheckResultHex(5, check5Data);
+        const check6Result = GetCheckResultHex(6, check6Data);
+
+        if (check1Result && check2Result && check3Result && check4Result && check5Result && check6Result) {
+            SaveMePls();
+            const strangeMiem = new Uint8Array(check1Data.length + check2Data.length + check3Data.length + check4Data.length + check5Data.length + check6Data.length);
+            strangeMiem.set(check1Data, 0);
+            strangeMiem.set(check2Data, check1Data.length);
+            strangeMiem.set(check3Data, check1Data.length + check2Data.length);
+            strangeMiem.set(check4Data, check1Data.length + check2Data.length + check3Data.length);
+            strangeMiem.set(check5Data, check1Data.length + check2Data.length + check3Data.length + check4Data.length);
+            strangeMiem.set(check6Data, check1Data.length + check2Data.length + check3Data.length + check4Data.length + check5Data.length);
+            alert(PerformHack(strangeMiem));
+        }
+    });
+</script>
+<script src=index.js async></script>
+</body>
+</html>

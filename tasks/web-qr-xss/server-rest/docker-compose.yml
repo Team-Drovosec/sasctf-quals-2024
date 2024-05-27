@@ -1,0 +1,6 @@
+version: '3'
+services:
+    einabe-testing:
+        build: ./
+        ports:
+            - 127.0.0.1:3000:80

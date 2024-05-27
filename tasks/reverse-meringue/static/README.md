@@ -1,0 +1,1 @@
+**Static files:** [meringue.tar.gz](https://storage.yandexcloud.net/sas-1/meringue_NvEhKZr9543zSaBRcFqpdkW.tar.gz)

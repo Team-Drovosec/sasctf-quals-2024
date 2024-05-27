@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+  task-cloud-storage:
+    build: .
+    restart: always
+    ports:
+        - "127.0.0.1:25045:80"

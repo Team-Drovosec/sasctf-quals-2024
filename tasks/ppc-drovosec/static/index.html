@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drovosec the Game</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="main.css">
+    <style>
+    .game {
+        height: 95vh;
+    }
+
+    #media {
+        width: 100%;
+    }
+
+    video {
+        margin: auto;
+        max-width: 1280px;
+        display: block;
+    }
+
+    nav button {
+        display: block;
+        margin: auto;
+        position: absolute;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    #start {
+        left: 49%;
+    }
+
+    #restart {
+        left: 48%;
+    }
+
+    table {
+      width: 100%;
+      height: 100%;
+    }
+
+    td {
+      vertical-align: center;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+
+
+<section>
+<div class="game">
+    <nav>
+        <button id="start" onclick="start()">start</button>
+        <button id="restart" style="display: none" onclick="window.location.reload()">restart</button>
+    </nav>
+
+    <table>
+    <tr><td>
+    <div id="media">
+        <audio id="audio" autoplay="true"></audio>
+        <video id="video" autoplay="true" playsinline="true"></video>
+    </div>
+    </td></tr>
+    </table>
+</div>
+
+  </div>
+     <div class="leaf">
+     <div>  <img src="axe.webp" height="75px" width="75px"></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+      <div>  <img src="axe.webp" height="75px" width="75px" ></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+       <div> <img src="axe.webp" height="75px" width="75px"></div>
+     <div>   <img src="axe.webp" height="75px" width="75px"></div>
+     <div><img src="axe.webp" height="75px" width="75px"></div>
+
+     </div>
+
+     <div class="leaf leaf1">
+     <div>  <img src="axe.webp" height="75px" width="75px"></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+      <div>  <img src="axe.webp" height="75px" width="75px" ></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+       <div> <img src="axe.webp" height="75px" width="75px"></div>
+     <div>   <img src="axe.webp" height="75px" width="75px"></div>
+     <div><img src="axe.webp" height="75px" width="75px"></div>
+
+     </div>
+
+     <div class="leaf leaf2">
+     <div>  <img src="axe.webp" height="75px" width="75px"></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+      <div>  <img src="axe.webp" height="75px" width="75px" ></div>
+      <div><img src="axe.webp" height="75px" width="75px"></div>
+
+       <div> <img src="axe.webp" height="75px" width="75px"></div>
+     <div>   <img src="axe.webp" height="75px" width="75px"></div>
+     <div><img src="axe.webp" height="75px" width="75px"></div>
+
+     </div>
+     </section>
+<script src="client.js"></script>
+
+</body>
+</html>

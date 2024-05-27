@@ -1,0 +1,250 @@
+# Turing machine with one tape
+# Every tape cell can hold an arbitrary string
+# If no rule could be found the machine rejects the tape
+
+start: c0
+accept: ac
+reject: rj
+blank: _
+
+{% set seq = [1, 2, 1, 0, 1, 3, 0, 1, 2, 3, 0, 1, 0, 3, 2, 3, 3, 3, 3, 3] %}
+# 101111011110100010000111
+{% set hash = "487fe5" %}
+{% set input_length = 24 %}
+
+# assert for length 24 and only 1 and 0
+{% for i in range(input_length) %}
+c{{i}} 0 -> c{{i+1}} 0 >
+c{{i}} 1 -> c{{i+1}} 1 >
+{% endfor %}
+
+#rewind tape
+c{{input_length}} _ -> r _ <
+r 0 -> r 0 <
+r 1 -> r 1 <
+r _ -> f0 _ ^
+
+# fill the program
+{% for step in seq %}
+f{{loop.index0}} _ -> f{{loop.index}} s{{step}} <
+{% endfor %}
+f{{ seq | length }} _ -> s _ >
+
+# rewind right to start of input
+{% for seqt in [0,1,2,3] %}
+s s{{seqt}} -> s s{{seqt}} >
+{% endfor %}
+s 0 -> i 0 <
+s 1 -> i 1 <
+s d -> i d <
+
+# rewind left to read instruction
+ll 0 -> ll 0 <
+ll 1 -> ll 1 <
+ll d -> ll d <
+{% for seqt in [0,1,2,3] %}
+ll s{{seqt}} -> i s{{seqt}} ^
+{% endfor %}
+ll _ -> e _ >
+
+# read instruction
+i s0 -> bi0 d >
+i s1 -> bi1 d >
+i s2 -> bi2 d >
+i s3 -> bi3 d >
+i _ -> e _ >
+# biX means begin instruction X
+
+# move to start of input for all instructions
+{% for seqt in [0,1,2,3] %}
+bi{{seqt}} d -> bi{{seqt}} d >
+bi{{seqt}} 0 -> i{{seqt}} 0 ^
+bi{{seqt}} 1 -> i{{seqt}} 1 ^
+{% endfor %}
+
+# instruction 2 (swap adjacent)
+# read first bit
+i2 0 -> i20 0 >
+i2 1 -> i21 1 >
+i2 _ -> ll _ <
+# read and write
+i20 0 -> i2r0 0 <
+i20 1 -> i2r1 0 <
+i20 _ -> ll _ <
+i21 0 -> i2r0 1 <
+i21 1 -> i2r1 1 <
+i21 _ -> ll _ <
+# write
+i2r0 0 -> i2 0 >
+i2r0 1 -> i2 0 >
+i2r1 0 -> i2 1 >
+i2r1 1 -> i2 1 >
+
+
+#instruction 1 (swap with one gap)
+# read first bit
+i1 0 -> i1g0 0 >
+i1 1 -> i1g1 1 >
+i1 _ -> ll _ <
+# skip gap
+i1g0 0 -> i10 0 >
+i1g0 1 -> i10 1 >
+i1g0 _ -> ll _ <
+i1g1 0 -> i11 0 >
+i1g1 1 -> i11 1 >
+i1g1 _ -> ll _ <
+# read and write
+i10 0 -> i1rg0 0 <
+i10 1 -> i1rg1 0 <
+i10 _ -> ll _ <
+i11 0 -> i1rg0 1 <
+i11 1 -> i1rg1 1 <
+i11 _ -> ll _ <
+# skip gap return
+i1rg0 0 -> i1r0 0 <
+i1rg0 1 -> i1r0 1 <
+i1rg0 _ -> ll _ <
+i1rg1 0 -> i1r1 0 <
+i1rg1 1 -> i1r1 1 <
+i1rg1 _ -> ll _ <
+# write
+i1r0 0 -> i1 0 >
+i1r0 1 -> i1 0 >
+i1r1 0 -> i1 1 >
+i1r1 1 -> i1 1 >
+
+
+# instruction 0 (swap with gap 2)
+# read first bit
+i0 0 -> i0gg0 0 >
+i0 1 -> i0gg1 1 >
+i0 _ -> ll _ <
+# skip first gap
+i0gg0 0 -> i0g0 0 >
+i0gg0 1 -> i0g0 1 >
+i0gg0 _ -> ll _ <
+i0gg1 0 -> i0g1 0 >
+i0gg1 1 -> i0g1 1 >
+i0gg1 _ -> ll _ <
+# skip second gap
+i0g0 0 -> i00 0 >
+i0g0 1 -> i00 1 >
+i0g0 _ -> ll _ <
+i0g1 0 -> i01 0 >
+i0g1 1 -> i01 1 >
+i0g1 _ -> ll _ <
+# read and write
+i00 0 -> i0rgg0 0 <
+i00 1 -> i0rgg1 0 <
+i00 _ -> ll _ <
+i01 0 -> i0rgg0 1 <
+i01 1 -> i0rgg1 1 <
+i01 _ -> ll _ <
+# skip first gap return
+i0rgg0 0 -> i0rg0 0 <
+i0rgg0 1 -> i0rg0 1 <
+i0rgg0 _ -> ll _ <
+i0rgg1 0 -> i0rg1 0 <
+i0rgg1 1 -> i0rg1 1 <
+i0rgg1 _ -> ll _ <
+# skip second gap return
+i0rg0 0 -> i0r0 0 <
+i0rg0 1 -> i0r0 1 <
+i0rg0 _ -> ll _ <
+i0rg1 0 -> i0r1 0 <
+i0rg1 1 -> i0r1 1 <
+i0rg1 _ -> ll _ <
+# write
+i0r0 0 -> i0 0 >
+i0r0 1 -> i0 0 >
+i0r1 0 -> i0 1 >
+i0r1 1 -> i0 1 >
+
+
+# instruction 3 (count "10", add such ops, first not being 4)
+i3 0 -> i3_0 0 >
+i3 1 -> i3_0_yes 1 >
+{% for i in range(16) %}
+i3_{{i}}_yes 0 -> i3_{{i + 1}} 0 >
+i3_{{i}}_yes 1 -> i3_{{i}}_yes 1 >
+i3_{{i}}_yes _ -> wb{{i}} _ <
+i3_{{i}} 0 -> i3_{{i}} 0 >
+i3_{{i}} 1 -> i3_{{i}}_yes 1 >
+i3_{{i}} _ -> wb{{i}} _ <
+# writeback
+wb{{i}} 0 -> wb{{i}} 0 <
+wb{{i}} 1 -> wb{{i}} 1 <
+wb{{i}} d -> wb{{i}} d <
+{% for seqt in [0,1,2,3] %}
+wb{{i}} s{{seqt}} -> wb{{i}} s{{seqt}} <
+{% endfor %}
+# convert to instruction
+wb{{i}} _ -> wbc_{{i | band(0b11)}}_{{i | bsl(2)}} _ ^
+{% endfor %}
+
+
+{% for seqt1 in [0,1,2,3] %}
+{% for seqt2 in [0,1,2,3] %}
+wbc_{{seqt1}}_{{seqt2}} _ -> wbc_{{seqt2}} s{{seqt1}} <
+{% endfor %}
+wbc_{{seqt1}} _ -> s s{{seqt1}} >
+{% endfor %}
+
+
+# collect output
+e d -> e _ >
+e 0 -> c 0 ^
+e 1 -> c 1 ^
+
+{% for a in [0, 1] %}
+c {{a}} -> c_{{a}} d{{a}} >
+{% for b in [0, 1] %}
+c_{{a}} {{b}} -> c_{{a}}_{{b}} d{{b}} >
+{% for c in [0, 1] %}
+c_{{a}}_{{b}} {{c}} -> c_{{a}}_{{b}}_{{c}} d{{c}} >
+{% for d in [0, 1] %}
+c_{{a}}_{{b}}_{{c}} {{d}} -> c_{{a}}_{{b}}_{{c}}_{{d}} {{d}} ^
+c_{{a}}_{{b}}_{{c}}_{{d}} {{d}} -> c {{(a + b * 2 + c * 4 + d * 8) | hex}} >
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
+c _ -> d ! <
+{% for i in range(16) %}
+d {{i | hex}} -> d {{i | hex}} <
+{% endfor %}
+d d0 -> d _ <
+d d1 -> d _ <
+d _ -> bcompact _ >
+bcompact _ -> bcompact ! >
+
+compact _ -> compact _ >
+{% for i in range(16) %}
+bcompact {{i | hex}} -> compact {{i | hex}} >
+compact {{i | hex}} -> compact_{{i | hex}} _ <
+compact_put_{{i | hex}} _ -> compact {{i | hex}} >
+compact_{{i | hex}} _ -> compact_{{i | hex}} _ <
+{% for j in range(16) %}
+compact_{{i | hex}} {{j | hex}} -> compact_put_{{i | hex}} {{j | hex}} >
+{% endfor %}
+{% endfor %}
+compact ! -> rw_check _ <
+rw_check _ -> rw_check _ <
+{% for i in range(16) %}
+rw_check {{i | hex}} -> rw_check {{i | hex}} <
+{% endfor %}
+rw_check ! -> rw2_check _ <
+rw2_check ! -> rw2_check _ <
+rw2_check _ -> compare0 _ >
+compare0 _ -> compare0 _ >
+{% for c in hash %}
+compare{{loop.index0}} {{ c }} -> compare{{loop.index}} _ >
+{% endfor %}
+compare{{hash | length}} _ -> print0 _ >
+
+{% set outp = "Flag_is_SAS{youbroketuringsmachine[input_tape]}" %}
+{% for l in outp %}
+print{{loop.index0}} _ -> print{{loop.index}} {{l}} >
+{% endfor %}
+print{{outp | length}} _ -> ac _ <

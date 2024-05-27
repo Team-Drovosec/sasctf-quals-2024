@@ -1,0 +1,4 @@
+qrcode
+aiohttp
+pydantic
+jinja2

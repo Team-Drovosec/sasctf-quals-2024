@@ -1,0 +1,231 @@
+body {
+    zoom: 1.25;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 7px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+#logo {
+    width: 80px;
+}
+
+a {
+    font-family: '3x5';
+    font-size: 50px;
+    color: #3f4f63;
+}
+
+#copy-icon {
+    padding-left: 20px;
+    width: 32px;
+    cursor: pointer;
+}
+
+#copy-icon:active {
+    opacity: 0.5;
+}
+
+#file {
+    display: none;
+}
+
+#text-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 15rem;
+    text-align: center;
+}
+
+#upload {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 30rem;
+}
+
+.logo-text {
+    font-family: '3x5';
+    font-size:  2.2rem;
+    color: #404f62;
+    padding-left: 10px;
+}
+
+.logo-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#drag-drop-area {
+    border: 2px dashed #000;
+    padding: 50px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 550px;
+    user-select: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #202020;
+    color: #ffffff;
+    text-align: center;
+    padding: 17px;
+    font-size: 0.625vw;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-left: 25%;
+    justify-content: flex-start;
+    display: flex;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+}
+
+.download-widget {
+    transform: scale(1.2);
+    font-family: '3x5';
+    background: white;
+    border: 1px solid #ccc;
+    width: 290px;
+    font-size: 0.9vw;
+    min-width: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 14rem;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.timer-info, .file-info {
+    display: flex;
+    align-items: center;
+}
+
+.time-icon, .file-icon {
+    background: #ddd;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+.time-remaining, .file-size {
+    display: inline;
+    color: #333;
+}
+
+.download-button {
+    background: #3f4f63;
+    color: white;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-top: 1px solid #ccc;
+}
+
+.download-icon {
+    background: #fff;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+@font-face {
+    font-family: '3x5';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/3x5.woff') format('woff');
+}
+
+.archive-preview {
+    width: 50rem;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+#preview {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 14vh 14vw;
+}
+
+.file-list {
+    height: 28rem;
+    overflow-y: auto;
+}
+
+.file-entry {
+    border-bottom: 1px solid #eee;
+}
+
+.file-path {
+    background: #e9e9e9;
+    padding: 5px 10px;
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-content {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-content {
+    justify-content: left;
+    font-size: 12px;
+    overflow-x: auto;
+}
+
+.file-content img {
+    max-height: 368px;
+    max-width: 368px;
+    height: auto;
+    display: block;
+}
+
+.footer-text {
+    text-align: left;
+    width: 26rem;
+    line-height: 137%;
+}
+
+#dropzone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999999;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: visibility 175ms, opacity 175ms;
+}

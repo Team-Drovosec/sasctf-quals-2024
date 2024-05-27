@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+.swipe {
+  overflow: auto;
+  width: 400px;
+  
+}
+.swipe-wrap {
+  
+  
+  overflow: hidden;
+}
+.swipe-wrap > div {
+  width: 80px;
+  color: #e8e8e8;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 10px 0;
+}
+.swipe-wrap > div.active{
+  font-size: 16px;
+  background-color: #eee;
+  color: #222;
+  border-bottom: 3px solid #f44336
+}
+
+
+.clock {
+  display: flex;
+  padding: 30px 0;
+  overflow: hidden;
+  height: 240px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+.hour, .minute  {
+  height: 240px;
+  overflow: auto;
+  float: left;
+  
+}
+
+.AM_PM {
+    height: 48px;
+    width: 80px;
+    overflow: auto;
+}
+
+.AM_PM::-webkit-scrollbar {
+    display: none;
+}
+.hour::-webkit-scrollbar {
+    display: none;
+}
+
+.minute::-webkit-scrollbar {
+    display: none;
+}
+
+.hour ul, .minute ul, .AM_PM ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+ 
+}
+.hour li, .minute li, .AM_PM li {
+  text-align: center;
+  width: 60px;
+  height: 48px;
+  color: #404040;
+  cursor: default;
+ 
+  
+}
+.hour li {
+  text-align: right;
+  width: 100px;
+  padding-right: 15px;
+  border-radius: 20px 0px 0px 20px;
+  
+}
+
+.AM_PM li {
+    border-radius: 0px 20px 20px 0px;
+    width: 80px;
+    
+}
+.fader {
+  color: #ccc !important;
+  font-size: 20px;
+  line-height: 26px;
+}
+.fade {
+  font-size: 25px;
+  line-height: 40px;
+  color: #7e828a !important;
+}
+.active {
+  background-color: #E8ECF2;
+  color: #404040;
+  font-size: 40px;
+  
+  
+}
