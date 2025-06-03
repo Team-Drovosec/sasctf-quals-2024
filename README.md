@@ -27,14 +27,14 @@ https://ctftime.org/event/2299
 |[foREGround](tasks/forensics-foreground)|forensics|[@2igosha](https://github.com/2igosha)|
 |[ice cReAM](tasks/forensics-icecream)|forensics|[@AV1ct0r](https://github.com/AV1ct0r)|
 |[CHIPI CHIPI CHAPA CHAPA](tasks/forensics-autoit)|forensics|[@gkucherin](https://github.com/gkucherin)|
-|[Cloud Storage](tasks/reverse-cloud-storage)|reverse|[@3vilWind](https://github.com/3wilWind)|
-|[CK0P0 CTYXHET](tasks/reverse-nuclear-panel)|reverse|[@3vilWind](https://github.com/3wilWind)|
+|[Cloud Storage](tasks/reverse-cloud-storage)|reverse|[@3vilWind](https://github.com/3vilWind)|
+|[CK0P0 CTYXHET](tasks/reverse-nuclear-panel)|reverse|[@3vilWind](https://github.com/3vilWind)|
 |[ebin](tasks/reverse-ebin)|reverse|[@kumfc](https://github.com/kumfc)|
 |[Napoleon](tasks/reverse-windriver)|reverse|[@gkucherin](https://github.com/gkucherin), [@sherif_magdy](https://keybase.io/sherif_magdy)|
 |[Secret meringue recipe](tasks/reverse-meringue)|reverse|[@gkucherin](https://github.com/gkucherin)|
 |[Petushok](tasks/misc-petushok)|misc|[@spacewasp](https://github.com/spacewasp)|
 |[Lignohakisto](tasks/misc-esperanto)|misc|[@irdkwmnsb](https://github.com/irdkwmnsb)|
-|[Last Lang](tasks/misc-last-lang)|misc|[@3vilWind](https://github.com/3wilWind)|
+|[Last Lang](tasks/misc-last-lang)|misc|[@3vilWind](https://github.com/3vilWind)|
 |[Ubercaged](tasks/pwn-ubercaged)|pwn|[@m4drat](https://github.com/m4drat)|
 |[Download Moment](tasks/web-download-moment)|web & pwn|[@kumfc](https://github.com/kumfc), [@m4drat](https://github.com/m4drat)|
 |[Earn Online for Bored Men](tasks/web-binary-options)|web|[@kumfc](https://github.com/kumfc)|
